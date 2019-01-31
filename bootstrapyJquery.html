@@ -25,7 +25,46 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="dist/js/timeline.min.js"></script>
 
+    <!-- <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>-->
+    <script src='./js/jquery.zoom.js'></script>
 
+    <style>
+        /* styles unrelated to zoom */
+        /* these styles are for the demo, but are not required for the plugin */
+        
+        .zoom {
+            display: inline-block;
+            position: relative;
+        }
+        /* magnifying glass icon */
+        
+        .zoom:after {
+            content: '';
+            display: block;
+            width: 33px;
+            height: 33px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: url(icon.png);
+        }
+        
+        .zoom img {
+            display: block;
+        }
+        
+        .zoom img::selection {
+            background-color: transparent;
+        }
+        
+        #ex2 img:hover {
+            cursor: url(grab.cur), default;
+        }
+        
+        #ex2 img:active {
+            cursor: url(grabbed.cur), default;
+        }
+    </style>
 
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
@@ -162,9 +201,10 @@
             </div>
         </div>
         <hr>
-        <h1 class="display-2">Historia de la musica</h1><br>
+        <h1 class="display-2">Music history</h1><br>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
                 <div class="timeline-container timeline-theme-1">
                     <div class="timeline js-timeline">
                         <div data-time="Uno">
@@ -252,12 +292,24 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-sm-2"></div>
             </br>
-            </br>
-
         </div>
-    </div><br>
+        <br>
+        <br>
+        <h1 class="display-2">Zoom</h1><br>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <span class='zoom' id='ex1'>
+                      <img src='./img/Historias-de-la-musica.jpg' width='700' height='300' alt='Daisy on the Ohoopee'/>
+                    </span>
+            </div>
+            <div class="col-sm-4"></div>
+
+        </div><br>
+    </div>
+
     <audio controls loop="true" autoplay="true">
         <source src="audio/guitarra.mp3" type="audio/mp3">
         Your browser does not support the audio element.
@@ -273,6 +325,20 @@
     </footer>
     <script>
         $('.js-timeline').Timeline();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#ex1').zoom();
+            $('#ex2').zoom({
+                on: 'grab'
+            });
+            $('#ex3').zoom({
+                on: 'click'
+            });
+            $('#ex4').zoom({
+                on: 'toggle'
+            });
+        });
     </script>
 </body>
 
